@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <h1>Sentiment Analysis</h1>
+    
+    {% if wordcloud_generated %}
+        <div>
+            <h2>WordClouds Generated!</h2>
+            <img src="{{ url_for('static', filename='wordcloud_ip.png') }}" alt="WordCloud (Full)">
+            <img src="{{ url_for('static', filename='wordcloud_pos.png') }}" alt="Positive WordCloud">
+            <img src="{{ url_for('static', filename='wordcloud_neg.png') }}" alt="Negative WordCloud">
+        </div>
+    {% else %}
+        <form action="/generate_wordcloud" method="post">
+            <label for="url">Amazon URL:</label>
+            <input type="url" id="url" name="url" placeholder="Enter Amazon URL" required>
+            <button type="submit">Generate WordCloud</button>
+        </form>
+    {% endif %}
+</body>
+</html>
